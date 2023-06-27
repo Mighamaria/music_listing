@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <img src="assets/logo/tune1.png" alt="Logo" class="logo">
+    <span style="color: aliceblue;" class="project-name">TUNE</span>
+  </div>
+  <ul>
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/user">User</a></li>
+    <li><a routerLink="/admin">Admin</a></li>
+    <li><a routerLink="/login">Login</a></li>
+    <li><a routerLink="/register">Register</a></li>
+  </ul>
+  <div class="theme-switch">
+    <input type="checkbox" id="themeSwitch" #themeSwitch (change)="toggleTheme(themeSwitch.checked)">
+    <label for="themeSwitch">Toggle Theme</label>
+  </div>
+</nav>

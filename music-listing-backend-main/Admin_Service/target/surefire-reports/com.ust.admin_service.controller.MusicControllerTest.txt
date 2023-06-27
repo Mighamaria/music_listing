@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ust.admin_service.controller.MusicControllerTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.823 s - in com.ust.admin_service.controller.MusicControllerTest

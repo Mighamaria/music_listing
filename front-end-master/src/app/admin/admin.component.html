@@ -1,0 +1,113 @@
+<div class="admin">
+  <div class="song-list">
+    <div class="search-create">
+      <div class="create-button-container">
+        <button id="createButton" class="create-button" (click)="showForm(null)">Create</button>
+      </div>
+
+      <div class="search-bar">
+        <input type="text"  [(ngModel)]="searchText" placeholder="Search by MusicId">
+        <button   class =" search-color" (click)="handleSearch()">Search</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Music Id</th>
+          <th>Music Name</th>
+          <th>Artist Name</th>
+          <th>Music Genre</th>
+          <th>Release Date</th>
+          <th>Language</th>
+          <th>Duration</th>
+          <th>Country</th>
+          <th>Overall Rate</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of filteredSongs">
+          <td>{{ song.musicId }}</td>
+          <td>{{ song.musicName }}</td>
+          <td>{{ song.artistName }}</td>
+          <td>{{ song.musicGenre }}</td>
+          <td>{{ song.songReleaseDate }}</td>
+          <td>{{ song.songLanguage }}</td>
+          <td>{{ song.duration }}</td>
+          <td>{{ song.country }}</td>
+          <td>{{ song.overallRate }}</td>
+          <td>
+            <button (click)="showForm(song)">Edit</button>
+            <button (click)="deleteSong(song.musicId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  
+    <div class="modal"  *ngIf="showSongForm">
+      <div class="song-form">
+      <form (ngSubmit)="saveSong()">
+        <div>
+          <label>Title:</label>
+          <input type="text" [(ngModel)]="selectedSong.musicName" name="musicName" required>
+        </div>
+
+        <div>
+          <label>Artist:</label>
+          <input type="text" [(ngModel)]="selectedSong.artistName" name="artistName" required>
+        </div>
+
+        <div>
+          <label>Genre:</label>
+          <input type="text" [(ngModel)]="selectedSong.musicGenre" name="musicGenre" required>
+        </div>
+
+        <div>
+          <label>Date:</label>
+          <input type="text" [(ngModel)]="selectedSong.songReleaseDate" name="songReleaseDate" required>
+        </div>
+
+        <div>
+          <label>Language:</label>
+          <input type="text" [(ngModel)]="selectedSong.songLanguage" name="songLanguage" required>
+        </div>
+
+        <div>
+          <label>Duration:</label>
+          <input type="text" [(ngModel)]="selectedSong.duration" name="duration" required>
+        </div>
+
+        <div>
+          <label>Country:</label>
+          <input type="text" [(ngModel)]="selectedSong.country" name="country" required>
+        </div>
+
+        <div>
+          <label>OverallRate:</label>
+          <input type="text" [(ngModel)]="selectedSong.overallRate" name="overallRate" required>
+        </div>
+
+        <div>
+          <label>Audio File:</label>
+          <input type="file" (change)="onFileSelected($event)" accept="audio/*" required>
+        </div>
+        
+
+        <div class="form-buttons">
+          <button type="submit">{{ selectedSong.musicId ? 'Update' : 'Save' }}</button>
+          &nbsp;<button type="button" (click)="cancelForm()">Cancel</button>
+        </div>
+      </form>
+      </div>
+   </div>
+
+
+
+
+
+    <app-footer></app-footer>
+  </div>
+</div>

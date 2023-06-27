@@ -1,0 +1,160 @@
+body{
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.home-container {
+    /* padding: 20px; */
+    background-color: #000000;
+    /* color: #ffffff; */
+    /* color: black; */
+  }
+  
+  .welcome-section {
+    /* background-color: #1a1a1a;
+    padding: 50px; */
+    /* background-color: #222222; */
+    /* background-image: url("https://media.giphy.com/media/ehssta24116nk9VWyN/giphy-downsized-large.gif"); */
+    background-image: url("https://media.giphy.com/media/gFhZjOtzoutSvckWPM/giphy.gif");
+    background-size: cover;
+    padding: 150px;
+  }
+  
+  .welcome-container {
+    text-align: center;
+  }
+  
+  .welcome-container h1 {
+    color: white;
+    font-size: 32px;
+  }
+  
+  .welcome-container p {
+    color: white;
+    font-size: 18px;
+  }
+  
+  .btn-get-started {
+    background-color: #ff8800;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-get-started:hover {
+    background-color: #e67600;
+  }
+  
+  .slideshow-section {
+    /* background-color: #1a1a1a;
+    padding: 50px; */
+    padding: 50px;
+  }
+  
+
+   /* Carousel */
+.carousel-item {
+  display: none;
+  position: relative;
+  transition: transform 0.6s ease;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  line-height: 36px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.carousel-control-prev-icon:before,
+.carousel-control-next-icon:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+}
+
+.carousel-control-prev-icon:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.carousel-control-next-icon:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.carousel-indicators li {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.5;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-indicators li.active {
+  opacity: 1;
+}
+
+
+.carousel-indicators{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,8 @@
+com\ust\admin_service\dto\MusicDto.class
+com\ust\admin_service\exception\MusicNotFoundException.class
+com\ust\admin_service\entity\Music.class
+com\ust\admin_service\repository\MusicRepository.class
+com\ust\admin_service\service\MusicService.class
+com\ust\admin_service\AdminApplication.class
+com\ust\admin_service\exception\ApplicationExceptionHandler.class
+com\ust\admin_service\controller\MusicController.class

@@ -1,0 +1,133 @@
+<body>
+<div class="register-container">
+    <h2>Register</h2>
+    <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+      
+     
+      <div class="form-group">
+        <label for="userName">Username:</label>
+        <input type="email" id="userName" name="userName" [(ngModel)]="user.userName" required  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+       <!-- minlength="5" maxlength="20" -->
+      <div class="error-message" *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
+          Check email format.
+        </div> 
+      </div>
+      
+      
+      <!-- <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="password-input">
+          <input type="{{ showPassword ? 'text' : 'password' }}" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword" required>
+          <button type="button" class="toggle-button" (click)="togglePasswordVisibility()">
+            <i class="far" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+          </button>
+        </div>
+      </div> -->
+      
+      
+      <div class="form-group">
+        <label for="userFirstName">First Name:</label>
+        <input type="text" id="userFirstName" name="userFirstName" [(ngModel)]="user['userFirstName']" required>
+      </div>
+
+      <div class="form-group">
+        <label for="userLastName">Last Name:</label>
+        <input type="text" id="userLastName" name="userLastName" [(ngModel)]="user['userLastName']" required>
+      </div>
+
+      <div class="form-group">
+        <label for="userPssword">Password</label>
+        <div class="password-input">
+          <input type="{{ showPassword ? 'text' : 'password' }}" id="userPassword" name="userPassword" [(ngModel)]="user.userPassword" required  maxlength="8" >
+          <!-- minlength="5" maxlength="20" -->
+          <!-- minlength="7" -->
+          <button type="button" class="toggle-button" (click)="togglePasswordVisibility()">
+            <i class="far" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+          </button>
+        </div>
+        <div class="error-message" *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
+        Check password specification.
+        </div>
+      </div>
+
+    <!-- // Clear the form fields after successful registration
+    this.userName = '';
+    this.userFirstName = '';
+    this.userLastName = '';
+    this.userPassword = ''; -->
+
+      <button style="align-items: center;" type="submit" (click) = "onSubmit">Register</button>
+    
+    </form>
+    <p class="login-register-link">Have an account? <a routerLink="/login">Login here</a></p>
+  </div>
+  
+  <div class="success-popup" *ngIf="showSuccessPopup">
+    <div class="success-message">
+      <h3>Registration Successful!</h3>
+      <p>Thank you for registering.</p>
+      <button (click)="closeSuccessPopup()">Close</button>
+    </div>
+  </div>
+  
+  <div class="failure-popup" *ngIf="showFailurePopup">
+    <div class="failure-message">
+      <h3>Registration Failed!</h3>
+      <p>Sorry, registration could not be completed.</p>
+      <button (click)="closeFailurePopup()">Close</button>
+    </div>
+  </div>
+
+
+  <!-- <div class="success-popup" *ngIf="showSuccessPopup">
+    <div class="success-message">
+      <h3>Registration Successful!</h3>
+      <p>Thank you for registering.</p>
+      <button (click)="closeSuccessPopup()">Close</button>
+    </div>
+  </div>
+
+  <div class="failure-popup" *ngIf="showFailurePopup">
+    <div class="failure-message">
+      <h3>Registration Failed!</h3>
+      <p>An error occurred during registration.</p>
+      <button (click)="closeFailurePopup()">Close</button>
+    </div>
+  </div> -->
+
+  <!-- <div class="success-popup" *ngIf="(popupService.successPopup$ | async)">
+    <div class="success-message">
+      <h3>Registration Successful!</h3>
+      <p>Thank you for registering.</p>
+      <button (click)="popupService.hidePopups()">Close</button>
+    </div>
+  </div>
+  
+  <div class="failure-popup" *ngIf="(popupService.failurePopup$ | async)">
+    <div class="failure-message">
+      <h3>Registration Failed!</h3>
+      <p>Sorry, registration could not be completed.</p>
+      <button (click)="popupService.hidePopups()">Close</button>
+    </div>
+  </div>
+  
+
+ -->
+
+
+
+
+
+
+  
+  <!-- <div class="success-popup" *ngIf="showSuccessPopup">
+     <div class="success-message"> 
+       <h3>Registration Successful!</h3>
+      <p>Thank you for registering.</p>
+      <button (click)="closeSuccessPopup()">Close</button> 
+     </div> 
+  </div> -->
+
+  </body>
+
+  

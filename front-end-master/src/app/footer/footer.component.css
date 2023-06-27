@@ -1,0 +1,29 @@
+.footer { 
+    /* background-color: darkgray;
+    /* padding: px; 
+    text-align: left;
+    flex-shrink: 0;*/
+    /* color: black; 
+    padding: 2px,2px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  text-align: left; */
+
+  background-color: darkgray;
+    padding: 10px; 
+    /* changed */
+
+    text-align: left;
+    flex-shrink: 0;
+    color: black;
+    position: relative;
+
+  /* bottom: -20px; */
+  margin-bottom: 0px;
+  left: 0px; 
+  width: 100%; 
+
+  } 

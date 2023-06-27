@@ -1,0 +1,12 @@
+com\ust\project\repository\RatingRepository.class
+com\ust\project\dto\RatingDto.class
+com\ust\project\MusicUserApplication.class
+com\ust\project\model\Rating.class
+com\ust\project\model\Music.class
+com\ust\project\service\UserService.class
+com\ust\project\dto\MusicDto.class
+com\ust\project\exception\GlobalExceptionHandler.class
+com\ust\project\repository\MusicRepository.class
+com\ust\project\exception\MusicNotFoundException.class
+com\ust\project\exception\InvalidRatingException.class
+com\ust\project\controller\UserController.class

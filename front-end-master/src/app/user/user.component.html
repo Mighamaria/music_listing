@@ -1,0 +1,326 @@
+<div class="user-dashboard">
+  <div class="user">
+
+    <div class="search-create">
+      <div class="create-button-container">
+        <button id="createButton" class="create-button" (click)="showForm()">Create</button>
+      </div>
+
+      <!-- <div  class="search-bar">
+        <app-search (click)="showViewForm()"></app-search>
+      </div> -->
+
+      <!-- <input type="text" [(ngModel)]="searchQuery" placeholder="Search">
+        <button (click)="openSearchModal()">Search</button> -->
+      <div class="search-bar">
+        
+
+       
+        <select [(ngModel)]="selectedCategory">
+          <option value="musicName">Music Name</option>
+          <option value="artistName">Artist Name</option>
+          <option value="songLangugae">Song Language</option>
+          <option value="genre">Genre</option>
+        </select>
+        
+
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search">
+        <button (click)="openSearchModal()">Search</button> 
+      </div>
+
+    </div>
+    <h3 class="section-banner">Top Rated Musics</h3>
+
+    <div class="card-container">
+      <div class="card" *ngFor="let song of songs" (click)="openModal(song)">
+        <img class="card-image" [src]="song.imageUrl" alt="Song Image">
+        <div class="card-content">
+          <h3 class="card-title">{{ song.title }}</h3>
+          <p class="card-artist">{{ song.artist }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+        <div class="audio-player">
+          <audio controls>
+            <source [src]="selectedSong.audioUrl" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <img class="modal-image" [src]="selectedSong.imageUrl" alt="Song Image">
+        <h3>{{ selectedSong.title }}</h3>
+        <p>{{ selectedSong.artist }}</p>
+        
+        
+        <!-- <div class="rating-stars">
+          <span class="star" [class.filled]="isSelected(star)" *ngFor="let star of getRatingStars(10)" (click)="selectRating(star)">&#9733;</span>
+        </div> -->
+
+        <p>Views: {{ selectedSong.views }}</p>
+        
+
+        <button (click)="closeModal()">Close</button>
+      </div>
+    </div>
+
+
+    <table>
+      <!-- <thead>
+        <tr>
+          <th>Music Id</th>
+          <th>Music Name</th>
+          <th>Artist Name</th>
+          <th>Music Genre</th>
+          <th>Release Date</th>
+          <th>Language</th>
+          <th>Duration</th>
+          <th>Country</th>
+          <th>Overall Rate</th>
+          <th>Action</th>
+        </tr>
+      </thead> -->
+      <tbody>
+        <tr *ngFor="let song of filteredSongs">
+           <!-- <button (click)="fetchSongs(song.musicId)">View</button> -->
+          <td>{{ song.musicId }}</td>
+          <td>{{ song.musicName }}</td>
+          <td>{{ song.artistName }}</td>
+          <td>{{ song.musicGenre }}</td>
+          <td>{{ song.songReleaseDate }}</td>
+          <td>{{ song.songLanguage }}</td>
+          <td>{{ song.duration }}</td>
+          <td>{{ song.country }}</td>
+          <td>{{ song.overallRate }}</td>
+          <td>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="song-form">
+    <div class="modal" *ngIf="showSongForm">
+      <form (ngSubmit)="saveSong()">
+        <div>
+          <label>Title:</label>
+          <input type="text" [(ngModel)]="selectedSong.musicName" name="musicName" required>
+        </div>
+
+        <div>
+          <label>Artist:</label>
+          <input type="text" [(ngModel)]="selectedSong.artistName" name="artistName" required>
+        </div>
+
+        <div>
+          <label>Genre:</label>
+          <input type="text" [(ngModel)]="selectedSong.musicGenre" name="musicGenre" required>
+        </div>
+
+        <div>
+          <label>Date:</label>
+          <input type="text" [(ngModel)]="selectedSong.songReleaseDate" name="songReleaseDate" required>
+        </div>
+
+        <div>
+          <label>Language:</label>
+          <input type="text" [(ngModel)]="selectedSong.songLanguage" name="songLanguage" required>
+        </div>
+
+        <div>
+          <label>Duration:</label>
+          <input type="text" [(ngModel)]="selectedSong.duration" name="duration" required>
+        </div>
+
+        <div>
+          <label>Country:</label>
+          <input type="text" [(ngModel)]="selectedSong.country" name="country" required>
+        </div>
+
+        <div>
+          <label>OverallRate:</label>
+          <input type="text" [(ngModel)]="selectedSong.overallRate" name="overallRate" required>
+        </div>
+
+
+        <div>
+          <label>Audio File:</label>
+          <input type="file" (change)="onFileSelected($event)" accept="audio/*" required>
+        </div>
+            
+
+        <div class="form-buttons">
+          <button type="submit">{{ selectedSong.musicId ? 'Update' : 'Save' }}</button>
+         &nbsp; <button type="button" (click)="cancelForm()">Cancel</button>
+        </div>
+      </form>
+      </div>
+      </div>
+
+
+
+      <div class="modal" *ngIf="showSearchModal">
+        <div class="modal-content">
+          <h2>Search Results</h2>
+                 <form>
+                  <table>
+                    <thead>
+                      <tr>
+                        <!-- <th>Music Id</th> -->
+                        <th>Music Name</th>
+                        <th>Artist Name</th>
+                        <th>Music Genre</th>
+                        <th>Overall Rate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let song of filteredSongs">
+                         <!-- <button (click)="fetchSongs(song.musicId)">View</button> -->
+                        <!-- <td>{{ song.musicId }}</td> -->
+                        <td>{{ song.musicName }}</td>
+                        <td>{{ song.artistName }}</td>
+                        <td>{{ song.musicGenre }}</td>
+                        <td>{{ song.overallRate }}</td>
+                        <td>
+                    
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              
+           </form>
+           <div class="rating-stars">
+            <span *ngFor="let star of getRatingStars(10)"
+                  class="star"
+                  [class.filled]="isSelected(star)"
+                  (click)="selectRating(star)">&#9733;</span>
+          </div>
+
+           <!-- </div>--> 
+           <button (click)="closeSearchModal()">Close</button>
+          
+    </div> 
+  </div>
+          
+          <!-- <div class="form-buttons"> -->
+            <!-- Add Rating -->
+            <!-- <div class="rating-stars">
+              <span class="star" [class.filled]="isSelected(star)" *ngFor="let star of getRatingStars(10)" (click)="selectRating(star)">&#9733;</span>
+            </div> -->
+
+            <!-- <div class="rating-stars">
+              <span class="star" [class.filled]="selectedRating >= 1" (click)="selectRating(1)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 2" (click)="selectRating(2)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 3" (click)="selectRating(3)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 4" (click)="selectRating(4)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 5" (click)="selectRating(5)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 6" (click)="selectRating(6)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 7" (click)="selectRating(7)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 8" (click)="selectRating(8)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 9" (click)="selectRating(9)">&#9733;</span>
+              <span class="star" [class.filled]="selectedRating >= 10" (click)="selectRating(10)">&#9733;</span>
+            </div> -->
+
+            <!-- <div class="rating-stars">
+              <span *ngFor="let star of getRatingStars(10); let i = index" class="star" [class.filled]="selectedRating >= i + 1" (click)="selectRating(i + 1)">&#9733;</span>
+            </div> -->
+
+            <!-- <div class="rating-stars">
+              <span *ngFor="let star of getRatingStars(10)"
+                    class="star"
+                    [class.filled]="isSelected(star)"
+                    (click)="selectRating(star)">&#9733;</span>
+            </div>
+           -->
+            <!-- View Rating -->
+            <!-- <div class="rating-stars">
+              <span class="star" [class.filled]="rating <= selectedSong.rating" *ngFor="let rating of getRatingStars(10)">&#9733;</span>
+            </div>
+          </div> -->
+          
+  <!-- <br> <button (click)="closeSearchModal()">Close</button>
+          </div> -->
+
+        <!-- </div> -->
+      <!-- </div> -->
+
+  <div class="slideshow">
+  <section class="slideshow-section">
+    <h3 class="section-banner">Genre</h3>
+    <div class="d-flex justify-content-center">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+          <li *ngFor="let song of newReleasedSongs; let i = index" [class.active]="i === slideIndex" (click)="goToSlide(i)"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div *ngFor="let song of newReleasedSongs; let i = index" class="carousel-item" [class.active]="i === slideIndex">
+            <img class="d-block" [src]="song.imageUrl" alt="Slide {{i + 1}}">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev" (click)="previousSlide()">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next" (click)="nextSlide()">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slideshow-section">
+    <h3 class="section-banner">Languages</h3>
+    <div class="d-flex justify-content-center">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+          <li *ngFor="let song of newReleasedSongs1; let i = index" [class.active]="i === slideIndex" (click)="goToSlide(i)"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div *ngFor="let song of newReleasedSongs1; let i = index" class="carousel-item" [class.active]="i === slideIndex">
+            <img class="d-block" [src]="song.imageUrl" alt="Slide {{i + 1}}">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev" (click)="previousSlide()">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next" (click)="nextSlide()">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slideshow-section">
+    <h3 class="section-banner">Artist Name</h3>
+    <div class="d-flex justify-content-center">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+          <li *ngFor="let song of newReleasedSongs2; let i = index" [class.active]="i === slideIndex" (click)="goToSlide(i)"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div *ngFor="let song of newReleasedSongs2; let i = index" class="carousel-item" [class.active]="i === slideIndex">
+            <img class="d-block" [src]="song.imageUrl" alt="Slide {{i + 1}}">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev" (click)="previousSlide()">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next" (click)="nextSlide()">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<app-footer></app-footer>
+</div>
